@@ -1,13 +1,14 @@
 import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 
 const read = async () => {
-  const path = "./files/fileToRead.txt";
+  const srcPath = join(import.meta.dirname,'files', 'fileToRead.txt')
 
   try {
-    if (!existsSync(path)) throw Error("FS operation failed");
+    if (!existsSync(srcPath)) throw Error("FS operation failed");
 
-    const content = await readFile(path, "utf8");
+    const content = await readFile(srcPath, "utf8");
 
     console.log(content);
   } catch (error) {
